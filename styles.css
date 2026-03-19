@@ -276,7 +276,7 @@ footer{flex-shrink:0;background:#fff;border-top:1px solid #e3eaf1;padding:11px 4
   .contact-grid{grid-template-columns:1fr}
 }
 @media(max-width:640px){
-  .hero{height:150px}.hero img.banner{object-position:center center}
+  .hero{height:150px}.hero img.banner{object-position:30% center}
   .nav{gap:5px 12px}.nav a{font-size:10px;letter-spacing:0.7px}
   .main{padding:8px 10px 12px}
   .home-card{grid-template-columns:1fr;align-items:start;padding:18px 14px;gap:14px;border-radius:20px}
