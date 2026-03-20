@@ -422,3 +422,58 @@ footer{flex-shrink:0;background:#fff;border-top:1px solid #e3eaf1;padding:11px 4
   footer{padding:10px 14px;}
   .footer-logo img{height:34px;}
 }
+/* ===== MOBİL FIX ===== */
+@media (max-width: 640px){
+
+  .hamburger{
+    display:flex;
+  }
+
+  .nav-strip-inner{
+    display:flex;
+    justify-content:flex-end;
+    padding:10px 16px;
+    background:rgba(10,42,88,0.75);
+  }
+
+  .nav{
+    display:none;
+    flex-direction:column;
+    width:100%;
+    background:rgba(8,30,70,0.97);
+    position:absolute;
+    top:100%;
+    left:0;
+    z-index:999;
+  }
+
+  .nav.open{
+    display:flex;
+  }
+
+  .nav a{
+    width:100%;
+    padding:14px 20px;
+    border-bottom:1px solid rgba(255,255,255,0.1);
+    color:#d6e8ff;
+  }
+
+  .hero img.banner{
+    object-fit:cover;
+    object-position:left center;
+  }
+
+  .home-card{
+    grid-template-columns:1fr;
+    padding:18px 14px;
+    gap:14px;
+  }
+
+  .page-card{
+    padding:18px 13px;
+  }
+
+  .main{
+    padding:8px 10px 12px;
+  }
+}
