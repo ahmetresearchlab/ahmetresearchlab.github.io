@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Projects – AHMET Research Group</title>
+<link rel="stylesheet" href="styles.css">
+<link rel="icon" href="4.png">
+</head>
+<body>
+<div class="hero">
+  <img class="banner" src="Banner.png" alt="Banner">
+  <div class="nav-strip"><nav class="nav">
+    <a href="index.html" id="nav-home">HOME</a>
+    <a href="research.html" id="nav-research">RESEARCH</a>
+    <a href="publications.html" id="nav-pubs">PUBLICATIONS</a>
+    <a href="projects.html" id="nav-projects">PROJECTS</a>
+    <a href="people.html" id="nav-people">PEOPLE</a>
+    <a href="news.html" id="nav-news">NEWS</a>
+    <a href="contact.html" id="nav-contact">CONTACT</a>
+  </nav></div>
+</div>
+<div class="main"><div class="page-card">
+  <div class="page-head"><h1 class="page-title">Research Projects</h1><p class="page-subtitle">Our funded and collaborative research projects advancing hydrogen systems, energy modelling, and sustainable infrastructure.</p><div class="rainbow-bar"></div></div>
+  <div class="proj-stats">
+    <div class="pstat"><span class="pstat-num" id="ps-total">–</span><span class="pstat-label">Total projects</span></div>
+    <div class="pstat"><span class="pstat-num" id="ps-ongoing">–</span><span class="pstat-label">Ongoing</span></div>
+    <div class="pstat"><span class="pstat-num" id="ps-completed">–</span><span class="pstat-label">Completed</span></div>
+  </div>
+  <div class="pub-filters">
+    <button class="filter-btn active" data-filter="all">All</button>
+    <button class="filter-btn" data-filter="eu">EU Funded</button>
+    <button class="filter-btn" data-filter="national">National</button>
+    <button class="filter-btn" data-filter="industry">Industry</button>
+    <button class="filter-btn" data-filter="ongoing">Ongoing</button>
+    <button class="filter-btn" data-filter="completed">Completed</button>
+  </div>
+  <div class="proj-grid" id="proj-grid"></div>
+</div></div>
+<div class="modal-overlay" id="modal" onclick="if(event.target===this)closeModal()">
+  <div class="modal-box">
+    <div class="modal-header">
+      <div id="modal-tag"></div>
+      <div class="modal-title" id="modal-title"></div>
+      <div class="modal-meta" id="modal-meta"></div>
+      <button class="modal-close" onclick="closeModal()">✕</button>
+    </div>
+    <div class="modal-body" id="modal-body"></div>
+  </div>
+</div>
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo"><img src="4.png" alt="Logo"></div>
+    <div class="footer-copy">&copy; 2025 Advanced Hydrogen Modelling and Energy Technologies Research Group. All rights reserved.</div>
+  </div>
+</footer>
+<script>
+document.getElementById('nav-projects').classList.add('active');
+
+const PROJECTS=[
+  {title:"HyOpt: Stochastic Optimisation of Hydrogen Supply Chains",type:"eu",status:"ongoing",period:"2023 – 2026",funder:"European Research Council (ERC)",team:"4 researchers",desc:"Developing multi-stage stochastic programming frameworks for designing cost-optimal and resilient hydrogen supply chains under demand uncertainty and technology cost trajectories.",body:`<p>The <strong>HyOpt</strong> project develops novel multi-stage stochastic programming frameworks for hydrogen supply chain design.</p><h3>Objectives</h3><ul><li>Develop scalable decomposition algorithms for large-scale stochastic supply chain models</li><li>Incorporate demand uncertainty, technology learning curves, and policy scenarios</li><li>Validate against real-world case studies in the UK, Germany, and the Netherlands</li><li>Release open-source software tools for practitioners and policymakers</li></ul><h3>Funding</h3><p>European Research Council (ERC) Consolidator Grant — €2.1M, 2023–2026.</p>`,link:""},
+  {title:"ResilH2: Resilience of Hydrogen Infrastructure Networks",type:"national",status:"ongoing",period:"2024 – 2027",funder:"EPSRC",team:"3 researchers",desc:"Investigating resilience metrics and stress-testing methodologies for future hydrogen networks, incorporating multi-hazard risk modelling and recovery strategies.",body:`<p><strong>ResilH2</strong> investigates how hydrogen infrastructure networks can be designed and operated to withstand disruptions.</p><h3>Research questions</h3><ul><li>What are meaningful resilience metrics for hydrogen networks?</li><li>How can we stress-test proposed networks against plausible disruption scenarios?</li><li>What design decisions improve resilience at acceptable cost?</li></ul><h3>Funding</h3><p>EPSRC Standard Research Grant — £780k, 2024–2027.</p>`,link:""},
+  {title:"GreenH2Path: Techno-Economic Assessment of Green Hydrogen Pathways",type:"industry",status:"ongoing",period:"2023 – 2025",funder:"Industry Partner (Confidential)",team:"2 researchers",desc:"Comparative techno-economic and lifecycle analysis of green hydrogen production routes for an industrial partner.",body:`<p><strong>GreenH2Path</strong> compares the cost trajectories and lifecycle environmental impacts of different green hydrogen production pathways.</p><h3>Deliverables</h3><ul><li>Techno-economic model with learning curve projections to 2050</li><li>Lifecycle assessment covering production, storage, and distribution</li><li>Decision-support dashboard for the industrial partner</li></ul>`,link:""},
+  {title:"LowCarbon-DS: Decision Support for Low-Carbon Energy Transitions",type:"national",status:"ongoing",period:"2022 – 2025",funder:"EPSRC",team:"5 researchers",desc:"Building open-source decision-support tools for planners and policymakers navigating the transition to low-carbon energy systems.",body:`<p><strong>LowCarbon-DS</strong> develops open-source software tools that help energy planners navigate complex decisions in the low-carbon transition.</p><h3>Tools developed</h3><ul><li><strong>EnergyOpt</strong> — multi-period MILP for regional energy planning</li><li><strong>H2Pathways</strong> — hydrogen infrastructure scenario explorer</li><li><strong>ClimateRisk-E</strong> — climate risk assessment for energy assets</li></ul>`,link:"https://github.com"},
+  {title:"H2Refuel: Optimal Location of Hydrogen Refuelling Stations",type:"industry",status:"completed",period:"2021 – 2023",funder:"Department for Transport / Industry Consortium",team:"3 researchers",desc:"Developed a multi-objective mixed-integer programming model for locating hydrogen refuelling infrastructure for heavy-duty transport.",body:`<p><strong>H2Refuel</strong> developed and applied a multi-objective MILP model for optimal location of hydrogen refuelling stations for heavy-duty road transport.</p><h3>Key results</h3><ul><li>Model applied to the UK national freight network (6,000+ nodes)</li><li>Identified cost-optimal rollout strategies for 2025, 2030, and 2035</li><li>Results informed UK Department for Transport hydrogen strategy</li><li>Two journal papers published</li></ul>`,link:""},
+  {title:"EnergyFlex: Flexibility in Future Integrated Energy Systems",type:"eu",status:"completed",period:"2020 – 2023",funder:"Horizon 2020",team:"6 researchers",desc:"European consortium project examining operational flexibility of integrated electricity, gas, and hydrogen networks.",body:`<p><strong>EnergyFlex</strong> was a Horizon 2020 consortium project (8 partners across 6 countries) examining operational flexibility of future integrated energy systems.</p><h3>Outputs</h3><p>5 journal papers, 2 conference papers, 1 open-source toolbox. Project completed December 2023.</p>`,link:""}
+];
+const TL={eu:'EU Funded',national:'National',industry:'Industry',internal:'Internal'};
+const TC={eu:'background:#e8ecf8;color:#003399;border-color:#b0bce8;',national:'background:#eef5fb;color:var(--blue);border-color:#c0d8ef;',industry:'background:#eef7ef;color:#1ea35a;border-color:#c0e0c8;',internal:'background:#eaf8fb;color:var(--cyan);border-color:#a8dce8;'};
+function openModal(i){
+  const p=PROJECTS[i];
+  document.getElementById('modal-tag').innerHTML=`<span class="modal-tag" style="${TC[p.type]||''}">${TL[p.type]||p.type}</span> <span class="modal-tag" style="margin-left:6px;${p.status==='ongoing'?'background:#eafaf1;color:#27ae60;border-color:#a9dfbf;':'background:#f5f5f5;color:#888;border-color:#ddd;'}">${p.status==='ongoing'?'Ongoing':'Completed'}</span>`;
+  document.getElementById('modal-title').textContent=p.title;
+  document.getElementById('modal-meta').textContent=p.period+' · '+p.funder;
+  document.getElementById('modal-body').innerHTML=p.body+(p.link?`<a class="modal-extlink" href="${p.link}" target="_blank" rel="noopener">Project website ↗</a>`:'');
+  document.getElementById('modal').classList.add('open');document.body.style.overflow='hidden';
+}
+function closeModal(){document.getElementById('modal').classList.remove('open');document.body.style.overflow='';}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();});
+function render(filter){
+  let items=filter==='all'?PROJECTS:filter==='ongoing'||filter==='completed'?PROJECTS.filter(p=>p.status===filter):PROJECTS.filter(p=>p.type===filter);
+  document.getElementById('ps-total').textContent=PROJECTS.length;
+  document.getElementById('ps-ongoing').textContent=PROJECTS.filter(p=>p.status==='ongoing').length;
+  document.getElementById('ps-completed').textContent=PROJECTS.filter(p=>p.status==='completed').length;
+  try{localStorage.setItem('ahmet_proj_count',PROJECTS.length);}catch(e){}
+  const grid=document.getElementById('proj-grid');
+  if(!items.length){grid.innerHTML='<p style="color:var(--muted);padding:20px 0;font-size:.9rem">No projects in this category.</p>';return;}
+  grid.innerHTML=items.map(p=>{const i=PROJECTS.indexOf(p);return `<div class="proj-card ${p.type}" onclick="openModal(${i})"><div class="proj-header"><div class="proj-title">${p.title}</div><span class="proj-status ${p.status}">${p.status==='ongoing'?'Ongoing':'Completed'}</span></div><div class="proj-meta"><span class="proj-badge ${p.type}">${TL[p.type]||p.type}</span><span class="proj-period">${p.period}</span></div><div class="proj-desc">${p.desc}</div><div class="proj-footer"><span class="proj-funder">${p.funder}</span><span class="proj-team">👥 ${p.team}</span><span class="proj-readmore">Details →</span></div></div>`;}).join('');
+}
+document.querySelectorAll('.filter-btn').forEach(btn=>{btn.addEventListener('click',()=>{document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');render(btn.dataset.filter);});});
+render('all');
+
+</script>
+</body>
+</html>
