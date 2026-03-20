@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Publications – AHMET Research Group</title>
+<link rel="stylesheet" href="styles.css">
+<link rel="icon" href="4.png">
+</head>
+<body>
+<div class="hero">
+  <picture>
+    <source media="(max-width: 640px)" srcset="Banner-mobile.png">
+    <img class="banner" src="Banner.png" alt="Advanced Hydrogen Modelling and Energy Technologies">
+  </picture>
+  <div class="nav-strip">
+    <div class="nav-strip-inner">
+      <button class="hamburger" id="hamburger" aria-label="Menu" onclick="toggleNav()">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <nav class="nav" id="main-nav">
+      <a href="index.html"        id="nav-home">HOME</a>
+      <a href="research.html"     id="nav-research">RESEARCH</a>
+      <a href="publications.html" id="nav-pubs">PUBLICATIONS</a>
+      <a href="projects.html"     id="nav-projects">PROJECTS</a>
+      <a href="people.html"       id="nav-people">PEOPLE</a>
+      <a href="news.html"         id="nav-news">NEWS</a>
+      <a href="contact.html"      id="nav-contact">CONTACT</a>
+    </nav>
+  </div>
+</div>
+<div class="main"><div class="page-card">
+  <div class="page-head"><h1 class="page-title">Publications</h1><p class="page-subtitle" id="pub-summary"></p><div class="rainbow-bar"></div></div>
+  <div class="pub-filters">
+    <button class="filter-btn active" data-filter="all">All</button>
+    <button class="filter-btn" data-filter="journal">Journal articles</button>
+    <button class="filter-btn" data-filter="conference">Conference papers</button>
+    <button class="filter-btn" data-filter="book">Book chapters</button>
+  </div>
+  <div id="pub-list"></div>
+</div></div>
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo"><img src="4.png" alt="Logo"></div>
+    <div class="footer-copy">&copy; 2025 Advanced Hydrogen Modelling and Energy Technologies Research Group. All rights reserved.</div>
+  </div>
+</footer>
+<script>
+
+function toggleNav() {
+  const nav = document.getElementById('main-nav');
+  const btn = document.getElementById('hamburger');
+  nav.classList.toggle('open');
+  btn.classList.toggle('open');
+}
+// Close nav when link clicked on mobile
+document.querySelectorAll('.nav a').forEach(a => {
+  a.addEventListener('click', () => {
+    document.getElementById('main-nav').classList.remove('open');
+    document.getElementById('hamburger').classList.remove('open');
+  });
+});
+
+document.getElementById('nav-pubs').classList.add('active');
+
+const PUBLICATIONS=[
+  {year:2024,title:"Optimal planning of hydrogen supply chains under uncertainty: A multi-stage stochastic approach",authors:"Smith J, Jones A, Williams R",journal:"International Journal of Hydrogen Energy",doi:"https://doi.org/10.1016/j.ijhydene.2024.01.001",type:"journal"},
+  {year:2024,title:"Resilience assessment of hydrogen infrastructure networks",authors:"Jones A, Smith J",journal:"Applied Energy",doi:"",type:"journal"},
+  {year:2023,title:"Techno-economic analysis of green hydrogen production pathways",authors:"Williams R, Smith J, Brown K",journal:"Energy Conversion and Management",doi:"",type:"journal"},
+  {year:2023,title:"Multi-objective optimization of hydrogen refueling station networks",authors:"Brown K, Jones A",journal:"IEEE International Conference on Energy Systems",doi:"",type:"conference"},
+  {year:2022,title:"Decision support tools for low-carbon energy transitions",authors:"Smith J, Williams R",journal:"Handbook of Sustainable Energy Systems",doi:"",type:"book"}
+];
+const TL={journal:'Journal',conference:'Conference',book:'Book chapter'};
+let af='all';
+function render(f){
+  const list=f==='all'?PUBLICATIONS:PUBLICATIONS.filter(p=>p.type===f);
+  const byY={};list.forEach(p=>{(byY[p.year]=byY[p.year]||[]).push(p);});
+  const el=document.getElementById('pub-list');
+  if(!list.length){el.innerHTML='<p style="color:var(--muted);padding:16px 0;font-size:.9rem">No publications found.</p>';return;}
+  el.innerHTML=Object.keys(byY).sort((a,b)=>b-a).map(yr=>`<div class="pub-year-group"><div class="pub-year-label">${yr} <span class="pub-count-badge">${byY[yr].length}</span></div>${byY[yr].map(p=>`<div class="pub-item ${p.type}"><div class="pub-title">${p.title}</div><div class="pub-authors">${p.authors}</div><div class="pub-meta"><span class="pub-journal">${p.journal}</span><span class="badge ${p.type}">${TL[p.type]||p.type}</span>${p.doi?`<a class="pub-doi" href="${p.doi}" target="_blank" rel="noopener">DOI ↗</a>`:''}</div></div>`).join('')}</div>`).join('');
+}
+function summary(){
+  const t=PUBLICATIONS.length,j=PUBLICATIONS.filter(p=>p.type==='journal').length,c=PUBLICATIONS.filter(p=>p.type==='conference').length,b=PUBLICATIONS.filter(p=>p.type==='book').length;
+  document.getElementById('pub-summary').textContent=`${t} publication${t!==1?'s':''} · ${j} journal · ${c} conference · ${b} book chapter${b!==1?'s':''}`;
+  try{localStorage.setItem('ahmet_pub_count',t);}catch(e){}
+}
+document.querySelectorAll('.filter-btn').forEach(btn=>{btn.addEventListener('click',()=>{document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');af=btn.dataset.filter;render(af);});});
+summary();render('all');
+
+</script>
+</body>
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Home – AHMET Research Group</title>
+<link rel="stylesheet" href="styles.css">
+<link rel="icon" href="4.png">
+</head>
+<body>
+<div class="hero">
+  <picture>
+    <source media="(max-width: 640px)" srcset="Banner-mobile.png">
+    <img class="banner" src="Banner.png" alt="Advanced Hydrogen Modelling and Energy Technologies">
+  </picture>
+  <div class="nav-strip">
+    <div class="nav-strip-inner">
+      <button class="hamburger" id="hamburger" aria-label="Menu" onclick="toggleNav()">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <nav class="nav" id="main-nav">
+      <a href="index.html"        id="nav-home">HOME</a>
+      <a href="research.html"     id="nav-research">RESEARCH</a>
+      <a href="publications.html" id="nav-pubs">PUBLICATIONS</a>
+      <a href="projects.html"     id="nav-projects">PROJECTS</a>
+      <a href="people.html"       id="nav-people">PEOPLE</a>
+      <a href="news.html"         id="nav-news">NEWS</a>
+      <a href="contact.html"      id="nav-contact">CONTACT</a>
+    </nav>
+  </div>
+</div>
+<div class="main">
+  <div class="home-card">
+    <div class="content">
+      <h2>Welcome to our research group</h2>
+      <p>We develop advanced models and decision-support tools for hydrogen supply chains, sustainable energy systems, infrastructure planning, resilience, and low-carbon transitions. Our research combines optimization, uncertainty analysis, techno-economic assessment, and energy technology perspectives to address complex real-world challenges.</p>
+      <div class="tags">
+        <div class="tag"><span class="dot blue"></span>Hydrogen systems</div>
+        <div class="tag"><span class="dot cyan"></span>Energy modelling</div>
+        <div class="tag"><span class="dot green"></span>Optimization</div>
+        <div class="tag"><span class="dot lime"></span>Resilience</div>
+        <div class="tag"><span class="dot light"></span>Sustainable technologies</div>
+      </div>
+    </div>
+    <div class="contact-box">
+      <div class="logo-contact"><img src="4.png" alt="Logo"><h2>Get in touch</h2></div>
+      <div class="rainbow-line"></div>
+      <div class="mail-row">
+        <div class="mail-icon">
+          <svg width="28" height="21" viewBox="0 0 30 22" fill="none">
+            <rect x="1.25" y="1.25" width="27.5" height="19.5" rx="2.75" stroke="currentColor" stroke-width="2.2"/>
+            <path d="M3.5 4.5L15 13L26.5 4.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="mail-text">yourmail@university.edu</div>
+      </div>
+      <button class="btn" onclick="location.href='positions.html'">Join us / Open positions</button>
+      <div class="stats-row">
+        <div class="stat" onclick="location.href='publications.html'"><span class="stat-num" id="stat-pub">–</span><span class="stat-label">Publications</span></div>
+        <div class="stat" onclick="location.href='people.html'"><span class="stat-num" id="stat-res">–</span><span class="stat-label">Researchers</span></div>
+        <div class="stat" onclick="location.href='projects.html'"><span class="stat-num" id="stat-proj">–</span><span class="stat-label">Projects</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo"><img src="4.png" alt="Logo"></div>
+    <div class="footer-copy">&copy; 2025 Advanced Hydrogen Modelling and Energy Technologies Research Group. All rights reserved.</div>
+  </div>
+</footer>
+<script>
+
+function toggleNav() {
+  const nav = document.getElementById('main-nav');
+  const btn = document.getElementById('hamburger');
+  nav.classList.toggle('open');
+  btn.classList.toggle('open');
+}
+// Close nav when link clicked on mobile
+document.querySelectorAll('.nav a').forEach(a => {
+  a.addEventListener('click', () => {
+    document.getElementById('main-nav').classList.remove('open');
+    document.getElementById('hamburger').classList.remove('open');
+  });
+});
+
+document.getElementById('nav-home').classList.add('active');
+
+const PC={pi:1,phd:2,msc:1};
+function ls(k,fb){{try{{const v=localStorage.getItem(k);return v!==null&&!isNaN(+v)?+v:fb;}}catch(e){{return fb;}}}}
+document.getElementById('stat-pub').textContent=ls('ahmet_pub_count',5);
+document.getElementById('stat-res').textContent=ls('ahmet_researcher_count',PC.pi+PC.phd+PC.msc);
+document.getElementById('stat-proj').textContent=ls('ahmet_proj_count',6);
+
+</script>
+</body>
+</html>
