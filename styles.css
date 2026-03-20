@@ -477,3 +477,17 @@ footer{flex-shrink:0;background:#fff;border-top:1px solid #e3eaf1;padding:11px 4
     padding:8px 10px 12px;
   }
 }
+@media (max-width: 640px){
+  .main{
+    padding-top: 4px !important;
+  }
+
+  .home-card,
+  .page-card{
+    margin-top: 0 !important;
+  }
+
+  .hero{
+    margin-bottom: 0 !important;
+  }
+}
