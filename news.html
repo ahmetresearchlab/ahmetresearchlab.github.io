@@ -15,21 +15,22 @@
   </picture>
   <div class="nav-strip">
     <div class="nav-strip-inner">
-      <button class="hamburger" id="hamburger" aria-label="Menu" onclick="toggleNav()">
+      <button class="hamburger" id="hamburger" aria-label="Menu" aria-expanded="false" onclick="toggleNav()">
         <span></span><span></span><span></span>
       </button>
     </div>
     <nav class="nav" id="main-nav">
-      <a href="index.html"        id="nav-home">HOME</a>
-      <a href="research.html"     id="nav-research">RESEARCH</a>
+      <a href="index.html" id="nav-home">HOME</a>
+      <a href="research.html" id="nav-research">RESEARCH</a>
       <a href="publications.html" id="nav-pubs">PUBLICATIONS</a>
-      <a href="projects.html"     id="nav-projects">PROJECTS</a>
-      <a href="people.html"       id="nav-people">PEOPLE</a>
-      <a href="news.html"         id="nav-news">NEWS</a>
-      <a href="contact.html"      id="nav-contact">CONTACT</a>
+      <a href="projects.html" id="nav-projects">PROJECTS</a>
+      <a href="people.html" id="nav-people">PEOPLE</a>
+      <a href="news.html" id="nav-news">NEWS</a>
+      <a href="contact.html" id="nav-contact">CONTACT</a>
     </nav>
   </div>
 </div>
+
 <div class="main"><div class="page-card">
   <div class="page-head"><h1 class="page-title">News &amp; Updates</h1><p class="page-subtitle">Latest news, publications, awards, and events from our research group.</p><div class="rainbow-bar"></div></div>
   <div class="news-filters">
@@ -43,6 +44,7 @@
   </div>
   <div class="news-grid" id="news-grid"></div>
 </div></div>
+
 <div class="modal-overlay" id="modal" onclick="if(event.target===this)closeModal()">
   <div class="modal-box">
     <div class="modal-header">
@@ -54,77 +56,138 @@
     <div class="modal-body" id="modal-body"></div>
   </div>
 </div>
+
 <footer>
   <div class="footer-inner">
     <div class="footer-logo"><img src="4.png" alt="Logo"></div>
     <div class="footer-copy">&copy; 2025 Advanced Hydrogen Modelling and Energy Technologies Research Group. All rights reserved.</div>
   </div>
 </footer>
+
 <script>
 document.getElementById('nav-news').classList.add('active');
 
-const TC2={paper:'background:#eef5fb;color:var(--blue);border-color:#c0d8ef;',funding:'background:#fef4e8;color:#e67e22;border-color:#f5d5a8;',award:'background:#fef9e7;color:#d4ac0d;border-color:#f9e79f;',event:'background:#eef7ef;color:#1ea35a;border-color:#c0e0c8;',team:'background:#eaf8fb;color:var(--cyan);border-color:#a8dce8;',media:'background:#f5eefb;color:#9b59b6;border-color:#dcc0ef;'};
-const TL2={paper:'New paper',funding:'Funding',award:'Award',event:'Event',team:'Team',media:'Media'};
-const NEWS=[
-  {date:"March 2025",tag:"funding",emoji:"🏆",title:"New grant awarded for hydrogen infrastructure resilience research",excerpt:"We are delighted to announce a major research grant to investigate resilience of future hydrogen infrastructure networks.",featured:true,body:`<p>We are delighted to announce that our group has been awarded a major research grant. The project, titled <strong>ResilH2</strong>, will run for three years (2025–2028).</p><h3>What this means for the group</h3><ul><li>Two new PhD positions will open — see the <a href="positions.html" style="color:var(--blue);font-weight:700;">Open Positions</a> page.</li><li>A postdoctoral researcher will join the team in mid-2025.</li></ul>`,link:""},
-  {date:"February 2025",tag:"paper",emoji:"📄",title:"New paper published in International Journal of Hydrogen Energy",excerpt:"Our latest work on stochastic optimisation of hydrogen supply chains under demand uncertainty has been published.",body:`<p>Our paper <em>"Multi-stage stochastic optimisation of hydrogen supply chains under demand uncertainty"</em> has been published in the <strong>International Journal of Hydrogen Energy</strong>.</p><ul><li>A generalised scenario tree construction method for hydrogen demand uncertainty</li><li>A decomposition algorithm that scales to large-scale supply chain networks</li><li>Case studies for the UK and German hydrogen markets</li></ul>`,link:"https://doi.org/10.1016/j.ijhydene.2025.01.001"},
-  {date:"January 2025",tag:"team",emoji:"🎓",title:"Welcome to our new PhD researcher",excerpt:"We are pleased to welcome [Name] to the group as a new PhD researcher.",body:`<p>We are very pleased to welcome <strong>[Name]</strong> to the AHMET Research Group as a new PhD researcher.</p>`,link:""},
-  {date:"December 2024",tag:"event",emoji:"🌍",title:"Presentation at AIChE Annual Meeting 2024",excerpt:"Group members presented two papers at AIChE Annual Meeting in San Diego.",body:`<p>Group members presented at the <strong>AIChE Annual Meeting 2024</strong> in San Diego, California.</p><ul><li><em>"Stochastic optimisation of regional hydrogen supply chains"</em> — oral presentation</li><li><em>"Resilience metrics for hydrogen infrastructure"</em> — poster</li></ul>`,link:""},
-  {date:"November 2024",tag:"award",emoji:"🥇",title:"Best paper award at ESCAPE-34",excerpt:"Our paper received the Best Paper Award at ESCAPE-34 in Florence.",body:`<p>Our paper received the <strong>Best Paper Award</strong> at the 34th European Symposium on Computer-Aided Process Engineering (ESCAPE-34), held in Florence, Italy.</p>`,link:""},
-  {date:"October 2024",tag:"media",emoji:"📰",title:"Research featured in Chemical Engineering Progress",excerpt:"Our work was featured in a special issue on the hydrogen economy.",body:`<p>Our research was featured in a special issue of <strong>Chemical Engineering Progress</strong> on the hydrogen economy.</p>`,link:""}
-];
-function openModal(i){
-  const n=NEWS[i];
-  document.getElementById('modal-tag').innerHTML=`<span class="modal-tag" style="${TC2[n.tag]||''}">${TL2[n.tag]||n.tag}</span>`;
-  document.getElementById('modal-title').textContent=n.title;
-  document.getElementById('modal-meta').textContent=n.date;
-  document.getElementById('modal-body').innerHTML=n.body+(n.link?`<a class="modal-extlink" href="${n.link}" target="_blank" rel="noopener">Read full article ↗</a>`:'');
-  document.getElementById('modal').classList.add('open');document.body.style.overflow='hidden';
-}
-function closeModal(){document.getElementById('modal').classList.remove('open');document.body.style.overflow='';}
-document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();});
-function render(tag){
-  const items=tag==='all'?NEWS:NEWS.filter(n=>n.tag===tag);
-  const grid=document.getElementById('news-grid');
-  if(!items.length){grid.innerHTML='<p style="color:var(--muted);padding:20px 0;grid-column:1/-1">No news in this category yet.</p>';return;}
-  grid.innerHTML=items.map(n=>{const i=NEWS.indexOf(n);const ft=n.featured&&tag==='all'&&i===0;return `<div class="news-card${ft?' featured-card':''}" onclick="openModal(${i})"><div class="news-thumb">${n.emoji}</div><div class="news-body"><div class="news-meta"><span class="news-tag ${n.tag}">${TL2[n.tag]||n.tag}</span><span class="news-date">${n.date}</span></div><div class="news-title">${n.title}</div><div class="news-excerpt">${n.excerpt}</div><div class="news-readmore">Read more →</div></div></div>`;}).join('');
-}
-document.querySelectorAll('.nf-btn').forEach(btn=>{btn.addEventListener('click',()=>{document.querySelectorAll('.nf-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');render(btn.dataset.tag);});});
-render('all');
+const TC2 = {
+  paper:'background:#eef5fb;color:var(--blue);border-color:#c0d8ef;',
+  funding:'background:#fef4e8;color:#e67e22;border-color:#f5d5a8;',
+  award:'background:#fef9e7;color:#d4ac0d;border-color:#f9e79f;',
+  event:'background:#eef7ef;color:#1ea35a;border-color:#c0e0c8;',
+  team:'background:#eaf8fb;color:var(--cyan);border-color:#a8dce8;',
+  media:'background:#f5eefb;color:#9b59b6;border-color:#dcc0ef;'
+};
 
-</script>
-</body>
-</html>
-<script>
-document.getElementById('nav-news').classList.add('active');
+const TL2 = {
+  paper:'New paper',
+  funding:'Funding',
+  award:'Award',
+  event:'Event',
+  team:'Team',
+  media:'Media'
+};
 
-const TC2={paper:'background:#eef5fb;color:var(--blue);border-color:#c0d8ef;',funding:'background:#fef4e8;color:#e67e22;border-color:#f5d5a8;',award:'background:#fef9e7;color:#d4ac0d;border-color:#f9e79f;',event:'background:#eef7ef;color:#1ea35a;border-color:#c0e0c8;',team:'background:#eaf8fb;color:var(--cyan);border-color:#a8dce8;',media:'background:#f5eefb;color:#9b59b6;border-color:#dcc0ef;'};
-const TL2={paper:'New paper',funding:'Funding',award:'Award',event:'Event',team:'Team',media:'Media'};
-const NEWS=[
-  {date:"March 2025",tag:"funding",emoji:"🏆",title:"New grant awarded for hydrogen infrastructure resilience research",excerpt:"We are delighted to announce a major research grant to investigate resilience of future hydrogen infrastructure networks.",featured:true,body:`<p>We are delighted to announce that our group has been awarded a major research grant. The project, titled <strong>ResilH2</strong>, will run for three years (2025–2028).</p><h3>What this means for the group</h3><ul><li>Two new PhD positions will open — see the <a href="positions.html" style="color:var(--blue);font-weight:700;">Open Positions</a> page.</li><li>A postdoctoral researcher will join the team in mid-2025.</li></ul>`,link:""},
-  {date:"February 2025",tag:"paper",emoji:"📄",title:"New paper published in International Journal of Hydrogen Energy",excerpt:"Our latest work on stochastic optimisation of hydrogen supply chains under demand uncertainty has been published.",body:`<p>Our paper <em>"Multi-stage stochastic optimisation of hydrogen supply chains under demand uncertainty"</em> has been published in the <strong>International Journal of Hydrogen Energy</strong>.</p><ul><li>A generalised scenario tree construction method for hydrogen demand uncertainty</li><li>A decomposition algorithm that scales to large-scale supply chain networks</li><li>Case studies for the UK and German hydrogen markets</li></ul>`,link:"https://doi.org/10.1016/j.ijhydene.2025.01.001"},
-  {date:"January 2025",tag:"team",emoji:"🎓",title:"Welcome to our new PhD researcher",excerpt:"We are pleased to welcome [Name] to the group as a new PhD researcher.",body:`<p>We are very pleased to welcome <strong>[Name]</strong> to the AHMET Research Group as a new PhD researcher.</p>`,link:""},
-  {date:"December 2024",tag:"event",emoji:"🌍",title:"Presentation at AIChE Annual Meeting 2024",excerpt:"Group members presented two papers at AIChE Annual Meeting in San Diego.",body:`<p>Group members presented at the <strong>AIChE Annual Meeting 2024</strong> in San Diego, California.</p><ul><li><em>"Stochastic optimisation of regional hydrogen supply chains"</em> — oral presentation</li><li><em>"Resilience metrics for hydrogen infrastructure"</em> — poster</li></ul>`,link:""},
-  {date:"November 2024",tag:"award",emoji:"🥇",title:"Best paper award at ESCAPE-34",excerpt:"Our paper received the Best Paper Award at ESCAPE-34 in Florence.",body:`<p>Our paper received the <strong>Best Paper Award</strong> at the 34th European Symposium on Computer-Aided Process Engineering (ESCAPE-34), held in Florence, Italy.</p>`,link:""},
-  {date:"October 2024",tag:"media",emoji:"📰",title:"Research featured in Chemical Engineering Progress",excerpt:"Our work was featured in a special issue on the hydrogen economy.",body:`<p>Our research was featured in a special issue of <strong>Chemical Engineering Progress</strong> on the hydrogen economy.</p>`,link:""}
+const NEWS = [
+  {
+    date:"March 2025",
+    tag:"funding",
+    emoji:"🏆",
+    title:"New grant awarded for hydrogen infrastructure resilience research",
+    excerpt:"We are delighted to announce a major research grant to investigate resilience of future hydrogen infrastructure networks.",
+    featured:true,
+    body:`<p>We are delighted to announce that our group has been awarded a major research grant. The project, titled <strong>ResilH2</strong>, will run for three years (2025–2028).</p><h3>What this means for the group</h3><ul><li>Two new PhD positions will open — see the <a href="positions.html" style="color:var(--blue);font-weight:700;">Open Positions</a> page.</li><li>A postdoctoral researcher will join the team in mid-2025.</li></ul>`,
+    link:""
+  },
+  {
+    date:"February 2025",
+    tag:"paper",
+    emoji:"📄",
+    title:"New paper published in International Journal of Hydrogen Energy",
+    excerpt:"Our latest work on stochastic optimisation of hydrogen supply chains under demand uncertainty has been published.",
+    body:`<p>Our paper <em>"Multi-stage stochastic optimisation of hydrogen supply chains under demand uncertainty"</em> has been published in the <strong>International Journal of Hydrogen Energy</strong>.</p><ul><li>A generalised scenario tree construction method for hydrogen demand uncertainty</li><li>A decomposition algorithm that scales to large-scale supply chain networks</li><li>Case studies for the UK and German hydrogen markets</li></ul>`,
+    link:"https://doi.org/10.1016/j.ijhydene.2025.01.001"
+  },
+  {
+    date:"January 2025",
+    tag:"team",
+    emoji:"🎓",
+    title:"Welcome to our new PhD researcher",
+    excerpt:"We are pleased to welcome [Name] to the group as a new PhD researcher.",
+    body:`<p>We are very pleased to welcome <strong>[Name]</strong> to the AHMET Research Group as a new PhD researcher.</p>`,
+    link:""
+  },
+  {
+    date:"December 2024",
+    tag:"event",
+    emoji:"🌍",
+    title:"Presentation at AIChE Annual Meeting 2024",
+    excerpt:"Group members presented two papers at AIChE Annual Meeting in San Diego.",
+    body:`<p>Group members presented at the <strong>AIChE Annual Meeting 2024</strong> in San Diego, California.</p><ul><li><em>"Stochastic optimisation of regional hydrogen supply chains"</em> — oral presentation</li><li><em>"Resilience metrics for hydrogen infrastructure"</em> — poster</li></ul>`,
+    link:""
+  },
+  {
+    date:"November 2024",
+    tag:"award",
+    emoji:"🥇",
+    title:"Best paper award at ESCAPE-34",
+    excerpt:"Our paper received the Best Paper Award at ESCAPE-34 in Florence.",
+    body:`<p>Our paper received the <strong>Best Paper Award</strong> at the 34th European Symposium on Computer-Aided Process Engineering (ESCAPE-34), held in Florence, Italy.</p>`,
+    link:""
+  },
+  {
+    date:"October 2024",
+    tag:"media",
+    emoji:"📰",
+    title:"Research featured in Chemical Engineering Progress",
+    excerpt:"Our work was featured in a special issue on the hydrogen economy.",
+    body:`<p>Our research was featured in a special issue of <strong>Chemical Engineering Progress</strong> on the hydrogen economy.</p>`,
+    link:""
+  }
 ];
+
 function openModal(i){
-  const n=NEWS[i];
-  document.getElementById('modal-tag').innerHTML=`<span class="modal-tag" style="${TC2[n.tag]||''}">${TL2[n.tag]||n.tag}</span>`;
-  document.getElementById('modal-title').textContent=n.title;
-  document.getElementById('modal-meta').textContent=n.date;
-  document.getElementById('modal-body').innerHTML=n.body+(n.link?`<a class="modal-extlink" href="${n.link}" target="_blank" rel="noopener">Read full article ↗</a>`:'');
-  document.getElementById('modal').classList.add('open');document.body.style.overflow='hidden';
+  const n = NEWS[i];
+  document.getElementById('modal-tag').innerHTML =
+    `<span class="modal-tag" style="${TC2[n.tag] || ''}">${TL2[n.tag] || n.tag}</span>`;
+  document.getElementById('modal-title').textContent = n.title;
+  document.getElementById('modal-meta').textContent = n.date;
+  document.getElementById('modal-body').innerHTML =
+    n.body + (n.link ? `<a class="modal-extlink" href="${n.link}" target="_blank" rel="noopener">Read full article ↗</a>` : '');
+  document.getElementById('modal').classList.add('open');
+  document.body.style.overflow = 'hidden';
 }
-function closeModal(){document.getElementById('modal').classList.remove('open');document.body.style.overflow='';}
-document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();});
+
+function closeModal(){
+  document.getElementById('modal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closeModal();
+});
+
 function render(tag){
-  const items=tag==='all'?NEWS:NEWS.filter(n=>n.tag===tag);
-  const grid=document.getElementById('news-grid');
-  if(!items.length){grid.innerHTML='<p style="color:var(--muted);padding:20px 0;grid-column:1/-1">No news in this category yet.</p>';return;}
-  grid.innerHTML=items.map(n=>{const i=NEWS.indexOf(n);const ft=n.featured&&tag==='all'&&i===0;return `<div class="news-card${ft?' featured-card':''}" onclick="openModal(${i})"><div class="news-thumb">${n.emoji}</div><div class="news-body"><div class="news-meta"><span class="news-tag ${n.tag}">${TL2[n.tag]||n.tag}</span><span class="news-date">${n.date}</span></div><div class="news-title">${n.title}</div><div class="news-excerpt">${n.excerpt}</div><div class="news-readmore">Read more →</div></div></div>`;}).join('');
+  const items = tag === 'all' ? NEWS : NEWS.filter(n => n.tag === tag);
+  const grid = document.getElementById('news-grid');
+
+  if (!items.length){
+    grid.innerHTML = '<p style="color:var(--muted);padding:20px 0;grid-column:1/-1">No news in this category yet.</p>';
+    return;
+  }
+
+  grid.innerHTML = items.map(n => {
+    const i = NEWS.indexOf(n);
+    const ft = n.featured && tag === 'all' && i === 0;
+    return `<div class="news-card${ft ? ' featured-card' : ''}" onclick="openModal(${i})"><div class="news-thumb">${n.emoji}</div><div class="news-body"><div class="news-meta"><span class="news-tag ${n.tag}">${TL2[n.tag] || n.tag}</span><span class="news-date">${n.date}</span></div><div class="news-title">${n.title}</div><div class="news-excerpt">${n.excerpt}</div><div class="news-readmore">Read more →</div></div></div>`;
+  }).join('');
 }
-document.querySelectorAll('.nf-btn').forEach(btn=>{btn.addEventListener('click',()=>{document.querySelectorAll('.nf-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');render(btn.dataset.tag);});});
+
+document.querySelectorAll('.nf-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.nf-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    render(btn.dataset.tag);
+  });
+});
+
 render('all');
 </script>
 <script src="nav.js"></script>
