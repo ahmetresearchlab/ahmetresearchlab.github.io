@@ -458,10 +458,10 @@ footer{flex-shrink:0;background:#fff;border-top:1px solid #e3eaf1;padding:11px 4
     color:#d6e8ff;
   }
 
-  .hero img.banner{
-    object-fit:cover;
-    object-position:left center;
-  }
+ .hero img.banner{
+  object-fit:cover;
+  object-position:left center;
+}
 
   .home-card{
     grid-template-columns:1fr;
@@ -538,9 +538,9 @@ footer{flex-shrink:0;background:#fff;border-top:1px solid #e3eaf1;padding:11px 4
   }
 
   .hero img.banner{
-    object-fit:cover;
-    object-position:left center;
-  }
+  object-fit:contain;
+  object-position:center center;
+}
 
   .main{
     padding:0 10px 12px;
