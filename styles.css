@@ -583,8 +583,20 @@ footer{flex-shrink:0;background:#fff;border-top:1px solid #e3eaf1;padding:11px 4
     padding-top: 0 !important;
   }
 }
-.person-name,
-.person-dept {
+.person-name{
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.person-name a{
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.person-dept{
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
