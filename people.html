@@ -72,12 +72,39 @@ const PEOPLE={
 };
 const CAP=`<svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg"><polygon points="32,10 62,26 32,42 2,26" fill="#1f73d2" opacity="0.9"/><polygon points="32,10 62,26 32,34 2,26" fill="#20b2c6" opacity="0.85"/><path d="M14 30 L14 46 Q32 52 32 52 L32 36 Q20 33 14 30Z" fill="#1ea35a" opacity="0.9"/><path d="M50 30 L50 46 Q32 52 32 52 L32 36 Q44 33 50 30Z" fill="#34c63b" opacity="0.85"/><line x1="62" y1="26" x2="62" y2="42" stroke="#1f73d2" stroke-width="3" stroke-linecap="round"/><circle cx="62" cy="44" r="3" fill="#20b2c6"/></svg>`;
 const BCAP=`<svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg"><polygon points="32,10 62,26 32,42 2,26" fill="currentColor" opacity="0.9"/><path d="M14 30 L14 46 Q32 52 32 52 L32 36 Q20 33 14 30Z" fill="currentColor" opacity="0.75"/><path d="M50 30 L50 46 Q32 52 32 52 L32 36 Q44 33 50 30Z" fill="currentColor" opacity="0.65"/><line x1="62" y1="26" x2="62" y2="42" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><circle cx="62" cy="44" r="3" fill="currentColor"/></svg>`;
-function card(p,cls=''){
-  const ph=p.photo?`<img class="person-photo" src="${p.photo}" alt="${p.name}" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="photo-fallback" style="display:none">${CAP}</div>`:`<div class="photo-fallback">${CAP}</div>`;
-  const nm=p.scholar?`<div class="person-name"><a href="${p.scholar}" target="_blank" rel="noopener">${p.name}</a></div>`:`<div class="person-name">${p.name}</div>`;
-  const em=p.email?`<div class="person-email">${p.email}</div>`:'';
-  const sc=p.scholar?`<a class="scholar-btn" href="${p.scholar}" target="_blank" rel="noopener">${BCAP} Scholar</a>`:'';
-  return `<div class="person-card ${cls}">${ph}${nm}<div class="person-role">${p.role}</div><div class="person-dept">${p.dept}</div>${em}${sc}</div>`;
+function card(p, cls=''){
+  const ph = p.photo
+    ? `<img class="person-photo" src="${p.photo}" alt="${p.name}"
+        onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+       <div class="photo-fallback" style="display:none">${CAP}</div>`
+    : `<div class="photo-fallback">${CAP}</div>`;
+
+  const nm = p.scholar
+    ? `<div class="person-name" title="${p.name}">
+         <a href="${p.scholar}" target="_blank" rel="noopener">${p.name}</a>
+       </div>`
+    : `<div class="person-name" title="${p.name}">${p.name}</div>`;
+
+  const em = p.email
+    ? `<div class="person-email">${p.email}</div>`
+    : '';
+
+  const sc = p.scholar
+    ? `<a class="scholar-btn" href="${p.scholar}" target="_blank" rel="noopener">
+         ${BCAP} Scholar
+       </a>`
+    : '';
+
+  return `
+    <div class="person-card ${cls}">
+      ${ph}
+      ${nm}
+      <div class="person-role">${p.role}</div>
+      <div class="person-dept" title="${p.dept}">${p.dept}</div>
+      ${em}
+      ${sc}
+    </div>
+  `;
 }
 function grid(gid,cid,list,cls=''){
   const el=document.getElementById(gid);
