@@ -6,6 +6,39 @@
 <title>People – AHMET Research Group</title>
 <link rel="stylesheet" href="styles.css">
 <link rel="icon" href="4.png">
+<style>
+  /* ── Kart genişliği ── */
+  .person-card {
+    min-width: 250px !important;
+    max-width: 270px !important;
+    padding: 20px 18px !important;
+    box-sizing: border-box;
+  }
+
+  /* ── İsim: tek satır, font uzunluğa göre küçülür ── */
+  .person-name,
+  .person-name a {
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: clip !important;
+    display: block;
+    width: 100%;
+  }
+  .person-name.name-lg { font-size: 1rem; }
+  .person-name.name-md { font-size: 0.88rem; }
+  .person-name.name-sm { font-size: 0.78rem; }
+  .person-name.name-xs { font-size: 0.70rem; }
+
+  /* ── Departman: tek satır ── */
+  .person-dept {
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: clip !important;
+    font-size: 0.74rem !important;
+    width: 100%;
+    display: block;
+  }
+</style>
 </head>
 <body>
 <div class="hero">
@@ -72,15 +105,16 @@ const PEOPLE={
 };
 const CAP=`<svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg"><polygon points="32,10 62,26 32,42 2,26" fill="#1f73d2" opacity="0.9"/><polygon points="32,10 62,26 32,34 2,26" fill="#20b2c6" opacity="0.85"/><path d="M14 30 L14 46 Q32 52 32 52 L32 36 Q20 33 14 30Z" fill="#1ea35a" opacity="0.9"/><path d="M50 30 L50 46 Q32 52 32 52 L32 36 Q44 33 50 30Z" fill="#34c63b" opacity="0.85"/><line x1="62" y1="26" x2="62" y2="42" stroke="#1f73d2" stroke-width="3" stroke-linecap="round"/><circle cx="62" cy="44" r="3" fill="#20b2c6"/></svg>`;
 const BCAP=`<svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg"><polygon points="32,10 62,26 32,42 2,26" fill="currentColor" opacity="0.9"/><path d="M14 30 L14 46 Q32 52 32 52 L32 36 Q20 33 14 30Z" fill="currentColor" opacity="0.75"/><path d="M50 30 L50 46 Q32 52 32 52 L32 36 Q44 33 50 30Z" fill="currentColor" opacity="0.65"/><line x1="62" y1="26" x2="62" y2="42" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><circle cx="62" cy="44" r="3" fill="currentColor"/></svg>`;
+
 function getNameClass(name){
   const len = name.length;
-
   if(len < 22) return "name-lg";
   if(len < 30) return "name-md";
   if(len < 38) return "name-sm";
   return "name-xs";
 }
-  function card(p, cls=''){
+
+function card(p, cls=''){
   const ph = p.photo
     ? `<img class="person-photo" src="${p.photo}" alt="${p.name}"
         onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
@@ -91,7 +125,7 @@ function getNameClass(name){
     ? `<div class="person-name ${getNameClass(p.name)}" title="${p.name}">
          <a href="${p.scholar}" target="_blank" rel="noopener">${p.name}</a>
        </div>`
-    : `<div class="person-name" title="${p.name}">${p.name}</div>`;
+    : `<div class="person-name ${getNameClass(p.name)}" title="${p.name}">${p.name}</div>`;
 
   const em = p.email
     ? `<div class="person-email">${p.email}</div>`
@@ -114,6 +148,7 @@ function getNameClass(name){
     </div>
   `;
 }
+
 function grid(gid,cid,list,cls=''){
   const el=document.getElementById(gid);
   if(!list||!list.length){el.closest('.group-section').style.display='none';return;}
