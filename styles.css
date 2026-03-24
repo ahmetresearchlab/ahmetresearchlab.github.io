@@ -583,20 +583,24 @@ footer{flex-shrink:0;background:#fff;border-top:1px solid #e3eaf1;padding:11px 4
     padding-top: 0 !important;
   }
 }
-.person-name{
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.person-name a{
-  display: block;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
+.person-name,
 .person-dept{
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+  display: block;
+}
+
+/* Dinamik font */
+.name-lg { font-size: 0.84rem; }
+.name-md { font-size: 0.78rem; }
+.name-sm { font-size: 0.72rem; }
+.name-xs { font-size: 0.66rem; }
+
+/* Link taşmasını da kontrol et */
+.person-name a{
+  display:block;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
