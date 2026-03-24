@@ -11,40 +11,28 @@ a{text-decoration:none;color:inherit}
   position:relative;
   overflow:hidden;
   background:#c8eef5;
-
-  /* boşlukları sıfırla */
   padding:0;
   margin:0;
   line-height:0;
 }
-
-/* Banner container */
 .hero picture{
   display:block;
   width:100%;
 }
-
-/* Banner image */
 .hero img.banner{
   display:block;
   width:100%;
   height:auto;
-
-  /* KRİTİK */
   object-fit:contain;
   object-position:center center;
 }
-
-/* NAV banner üstüne otursun */
 .nav-strip{
   background:rgba(10,42,88,0.55);
   padding:10px 0;
-
   position:absolute;
   left:0;
   right:0;
   bottom:0;
-
   z-index:20;
 }
 .nav-strip-inner{
@@ -61,7 +49,6 @@ a{text-decoration:none;color:inherit}
 }
 .nav a{color:#d6e8ff;font-size:12.5px;letter-spacing:1px;text-transform:uppercase;font-weight:700;transition:color .2s;}
 .nav a:hover,.nav a.active{color:#fff}
-/* Hamburger — gizli masaüstünde */
 .hamburger{display:none;background:none;border:none;cursor:pointer;padding:6px 10px;flex-direction:column;gap:5px;}
 .hamburger span{display:block;width:24px;height:2.5px;background:#d6e8ff;border-radius:2px;transition:.25s;}
 .hamburger.open span:nth-child(1){transform:translateY(7.5px) rotate(45deg);}
@@ -113,25 +100,46 @@ a{text-decoration:none;color:inherit}
 .group-section:first-of-type{margin-top:2px;border-top:none;padding-top:0;}
 .group-count{font-size:0.70rem;font-weight:700;background:#eef3fa;color:var(--muted);border-radius:999px;padding:2px 8px;border:1px solid #dce6ef;text-transform:none;letter-spacing:0;}
 .people-grid{display:flex;flex-wrap:wrap;gap:14px;}
-.person-card{width:220px;background:#fafcff;border:1px solid #e4edf5;border-radius:14px;padding:18px 13px 14px;display:flex;flex-direction:column;align-items:center;text-align:center;transition:box-shadow .2s,transform .2s;}
+
+/* Tüm kartlar aynı genişlik */
+.person-card{width:240px;background:#fafcff;border:1px solid #e4edf5;border-radius:14px;padding:18px 14px 14px;display:flex;flex-direction:column;align-items:center;text-align:center;transition:box-shadow .2s,transform .2s;}
 .person-card:hover{box-shadow:0 8px 28px rgba(32,57,86,0.10);transform:translateY(-2px);}
 .person-photo{width:90px;height:90px;border-radius:50%;object-fit:cover;border:3px solid #ddeaf8;margin-bottom:11px;background:#eef3f8;display:block;}
 .photo-fallback{width:90px;height:90px;border-radius:50%;background:linear-gradient(135deg,#e8f0fb,#ddeef8);border:3px solid #c8dcf0;display:flex;align-items:center;justify-content:center;margin-bottom:11px;flex-shrink:0;}
 .photo-fallback svg{width:44px;height:44px;}
-.person-name{font-size:0.84rem;font-weight:800;color:var(--deep);margin-bottom:3px;line-height:1.3;}
-.person-name a{color:var(--deep);text-decoration:none;border-bottom:1.5px dotted #b4c8e0;transition:color .2s,border-color .2s;}
+
+/* Unvan satırı: Prof.Dr. vb. */
+.person-title{font-size:0.70rem;font-weight:700;color:var(--muted);line-height:1.2;margin-bottom:1px;}
+
+/* İsim */
+.person-name{font-weight:800;color:var(--deep);margin-bottom:3px;line-height:1.25;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%;display:block;}
+.person-name a{color:var(--deep);text-decoration:none;border-bottom:1.5px dotted #b4c8e0;transition:color .2s,border-color .2s;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:block;}
 .person-name a:hover{color:var(--blue);border-color:var(--blue);}
+
+/* Dinamik font — ismin geri kalanına göre */
+.name-lg{font-size:0.92rem;}
+.name-md{font-size:0.84rem;}
+.name-sm{font-size:0.76rem;}
+.name-xs{font-size:0.69rem;}
+
 .person-role{font-size:0.72rem;color:var(--cyan);font-weight:700;margin-bottom:3px;}
-.person-dept{font-size:0.70rem;color:var(--muted);margin-bottom:5px;line-height:1.35;}
+
+/* "Department of" prefix satırı */
+.person-dept-prefix{font-size:0.68rem;color:var(--muted);line-height:1.2;margin-bottom:0;}
+
+/* Departman ismi */
+.person-dept{font-size:0.70rem;color:var(--muted);margin-bottom:5px;line-height:1.25;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%;display:block;}
+
 .person-email{font-size:0.67rem;color:var(--muted);margin-bottom:9px;word-break:break-all;line-height:1.3;}
 .scholar-btn{display:inline-flex;align-items:center;gap:5px;padding:4px 11px;border-radius:999px;border:1.5px solid #dce6ef;font-size:0.69rem;font-weight:700;color:var(--blue);background:#f0f6ff;transition:.2s;margin-top:auto;cursor:pointer;text-decoration:none;}
 .scholar-btn:hover{background:var(--blue);color:#fff;border-color:var(--blue);}
 .scholar-btn svg{width:12px;height:12px;flex-shrink:0;}
-.person-card.pi{width:245px;}
+
+.person-card.pi{width:240px;}
 .person-card.pi .person-photo,.person-card.pi .photo-fallback{width:114px;height:114px;}
 .person-card.pi .photo-fallback svg{width:56px;height:56px;}
-.person-card.pi .person-name{font-size:0.92rem;}
-.person-card.alumni{width:163px;padding:12px 11px;}
+
+.person-card.alumni{width:240px;padding:12px 14px;}
 .person-card.alumni .person-photo,.person-card.alumni .photo-fallback{width:72px;height:72px;}
 .person-card.alumni .photo-fallback svg{width:34px;height:34px;}
 
@@ -340,96 +348,27 @@ footer{flex-shrink:0;background:#fff;border-top:1px solid #e3eaf1;padding:11px 4
 }
 
 @media(max-width:640px){
-  .hero{
-    position:relative;
-    background:#eef6fb;
-  }
-
-  .hero picture{
-    display:block;
-    width:100%;
-  }
-
-  .hero img.banner{
-    display:block;
-    width:100%;
-    height:auto;
-    object-fit:contain;
-    object-position:center center;
-    background:#eef6fb;
-  }
-
-  .hamburger{
-    display:flex !important;
-    align-items:center;
-    justify-content:center;
-    background:rgba(10,42,88,0.82);
-    border-radius:10px;
-    padding:10px 12px;
-    box-shadow:0 8px 18px rgba(10,42,88,0.18);
-  }
-
-  .nav-strip{
-    position:absolute;
-    top:0;
-    left:0;
-    right:0;
-    padding:0 !important;
-    background:none;
-    z-index:120;
-  }
-
-  .nav-strip-inner{
-    display:flex;
-    align-items:center;
-    justify-content:flex-end;
-    padding:10px 12px;
-    background:none;
-  }
-
-  .nav{
-    display:none;
-    flex-direction:column;
-    align-items:stretch;
-    gap:0;
-    padding:0;
-    width:calc(100% - 24px);
-    max-width:none;
-    margin:0 12px;
-    background:rgba(8,30,70,0.97);
-    border-radius:14px;
-    overflow:hidden;
-    box-shadow:0 18px 36px rgba(10,42,88,0.22);
-  }
-
+  .hero{position:relative;background:#eef6fb;}
+  .hero picture{display:block;width:100%;}
+  .hero img.banner{display:block;width:100%;height:auto;object-fit:contain;object-position:center center;background:#eef6fb;}
+  .hamburger{display:flex !important;align-items:center;justify-content:center;background:rgba(10,42,88,0.82);border-radius:10px;padding:10px 12px;box-shadow:0 8px 18px rgba(10,42,88,0.18);}
+  .nav-strip{position:absolute;top:0;left:0;right:0;padding:0 !important;background:none;z-index:120;}
+  .nav-strip-inner{display:flex;align-items:center;justify-content:flex-end;padding:10px 12px;background:none;}
+  .nav{display:none;flex-direction:column;align-items:stretch;gap:0;padding:0;width:calc(100% - 24px);max-width:none;margin:0 12px;background:rgba(8,30,70,0.97);border-radius:14px;overflow:hidden;box-shadow:0 18px 36px rgba(10,42,88,0.22);}
   .nav.open{display:flex !important;}
-
-  .nav a{
-    width:100%;
-    padding:14px 18px;
-    font-size:13px;
-    letter-spacing:0.8px;
-    border-bottom:1px solid rgba(255,255,255,0.10);
-    color:#d6e8ff;
-    display:block;
-    box-sizing:border-box;
-    background:transparent;
-  }
-
+  .nav a{width:100%;padding:14px 18px;font-size:13px;letter-spacing:0.8px;border-bottom:1px solid rgba(255,255,255,0.10);color:#d6e8ff;display:block;box-sizing:border-box;background:transparent;}
   .nav a:last-child{border-bottom:none;}
-
   .nav a:hover,.nav a.active{color:#fff;background:rgba(255,255,255,0.06);}
-
-  .main{padding:8px 10px 12px;}
+  .main{padding:0 10px 12px;}
   .home-card{grid-template-columns:1fr;align-items:start;padding:18px 14px;gap:14px;border-radius:20px;}
   .content h2{font-size:1.35rem;}
   .content p{font-size:.88rem;}
-  .page-card{padding:18px 13px;border-radius:20px;}
+  .page-card{padding:18px 13px;border-radius:20px;margin-top:0 !important;}
   .page-title{font-size:1.4rem;}
   .people-grid{gap:10px;justify-content:center;}
-  .person-card{width:148px;}
-  .person-card.pi{width:170px;}
-  .person-card.alumni{width:135px;}
+  .person-card{width:160px;}
+  .person-card.pi{width:180px;}
+  .person-card.alumni{width:160px;}
   .proj-grid{grid-template-columns:1fr;}
   .themes-grid{grid-template-columns:1fr;}
   .news-grid{grid-template-columns:1fr;}
@@ -441,166 +380,9 @@ footer{flex-shrink:0;background:#fff;border-top:1px solid #e3eaf1;padding:11px 4
   .contact-grid{grid-template-columns:1fr;}
   footer{padding:10px 14px;}
   .footer-logo img{height:34px;}
-}
-/* ===== MOBİL FIX ===== */
-@media (max-width: 640px){
-
-  .hamburger{
-    display:flex;
-  }
-
-  .nav-strip-inner{
-    display:flex;
-    justify-content:flex-end;
-    padding:10px 16px;
-    background:rgba(10,42,88,0.75);
-  }
-
-  .nav{
-    display:none;
-    flex-direction:column;
-    width:100%;
-    background:rgba(8,30,70,0.97);
-    position:absolute;
-    top:100%;
-    left:0;
-    z-index:999;
-  }
-
-  .nav.open{
-    display:flex;
-  }
-
-  .nav a{
-    width:100%;
-    padding:14px 20px;
-    border-bottom:1px solid rgba(255,255,255,0.1);
-    color:#d6e8ff;
-  }
-
- .hero img.banner{
-  object-fit:cover;
-  object-position:left center;
-}
-
-  .home-card{
-    grid-template-columns:1fr;
-    padding:18px 14px;
-    gap:14px;
-  }
-
-  .page-card{
-    padding:18px 13px;
-  }
-
-  .main{
-    padding:8px 10px 12px;
-  }
-}
-@media (max-width: 640px){
-  .main{
-    padding-top: 4px !important;
-  }
-
-  .home-card,
-  .page-card{
-    margin-top: 0 !important;
-  }
-
-  .hero{
-    margin-bottom: 0 !important;
-  }
-}
-@media (max-width: 640px){
-
-  .hero{
-    overflow: visible !important;
-  }
-
-  .hamburger{
-    display:flex;
-  }
-
-  .nav-strip{
-    position: relative;
-    z-index: 1001;
-  }
-
-  .nav-strip-inner{
-    display:flex;
-    justify-content:flex-end;
-    padding:10px 16px;
-    background:rgba(10,42,88,0.75);
-  }
-
-  .nav{
-    display:none;
-    flex-direction:column;
-    width:100%;
-    background:rgba(8,30,70,0.97);
-    position:absolute;
-    top:100%;
-    left:0;
-    z-index:9999;
-    max-height:calc(100vh - 120px);
-    overflow-y:auto;
-  }
-
-  .nav.open{
-    display:flex;
-  }
-
-  .nav a{
-    width:100%;
-    padding:14px 20px;
-    border-bottom:1px solid rgba(255,255,255,0.1);
-    color:#d6e8ff;
-  }
-
-  .hero img.banner{
-  object-fit:contain;
-  object-position:center center;
-}
-
-  .main{
-    padding:0 10px 12px;
-  }
-
-  .home-card{
-    grid-template-columns:1fr;
-    padding:18px 14px;
-    gap:14px;
-  }
-
-  .page-card{
-    padding:18px 13px;
-    margin-top:0 !important;
-  }
-}
-@media (max-width: 640px){
-  .main{
-    padding-top: 0 !important;
-  }
-}
-.person-name,
-.person-dept{
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  max-width: 100%;
-  display: block;
-}
-
-/* Dinamik font */
-.name-lg { font-size: 0.90rem; }
-.name-md { font-size: 0.82rem; }
-.name-sm { font-size: 0.74rem; }
-.name-xs { font-size: 0.67rem; }
-
-/* Link taşmasını da kontrol et */
-.person-name a{
-  display:block;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  .hero{overflow:visible !important;}
+  .nav-strip{position:relative;z-index:1001;}
+  .main{padding-top:0 !important;}
+  .hero{margin-bottom:0 !important;}
+  .home-card{margin-top:0 !important;}
 }
