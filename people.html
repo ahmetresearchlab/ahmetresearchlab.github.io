@@ -6,39 +6,6 @@
 <title>People – AHMET Research Group</title>
 <link rel="stylesheet" href="styles.css">
 <link rel="icon" href="4.png">
-<style>
-  /* ── Kart genişliği ── */
-  .person-card {
-    min-width: 250px !important;
-    max-width: 270px !important;
-    padding: 20px 18px !important;
-    box-sizing: border-box;
-  }
-
-  /* ── İsim: tek satır, font uzunluğa göre küçülür ── */
-  .person-name,
-  .person-name a {
-    white-space: nowrap !important;
-    overflow: hidden !important;
-    text-overflow: clip !important;
-    display: block;
-    width: 100%;
-  }
-  .person-name.name-lg { font-size: 1rem; }
-  .person-name.name-md { font-size: 0.88rem; }
-  .person-name.name-sm { font-size: 0.78rem; }
-  .person-name.name-xs { font-size: 0.70rem; }
-
-  /* ── Departman: tek satır ── */
-  .person-dept {
-    white-space: nowrap !important;
-    overflow: hidden !important;
-    text-overflow: clip !important;
-    font-size: 0.74rem !important;
-    width: 100%;
-    display: block;
-  }
-</style>
 </head>
 <body>
 <div class="hero">
@@ -84,7 +51,6 @@ function toggleNav() {
   nav.classList.toggle('open');
   btn.classList.toggle('open');
 }
-// Close nav when link clicked on mobile
 document.querySelectorAll('.nav a').forEach(a => {
   a.addEventListener('click', () => {
     document.getElementById('main-nav').classList.remove('open');
