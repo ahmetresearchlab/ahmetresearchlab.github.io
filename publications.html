@@ -82,7 +82,14 @@ function render(f){
   const byY={};list.forEach(p=>{(byY[p.year]=byY[p.year]||[]).push(p);});
   const el=document.getElementById('pub-list');
   if(!list.length){el.innerHTML='<p style="color:var(--muted);padding:16px 0;font-size:.9rem">No publications found.</p>';return;}
-  el.innerHTML=Object.keys(byY).sort((a,b)=>b-a).map(yr=>`<div class="pub-year-group"><div class="pub-year-label">${yr} <span class="pub-count-badge">${byY[yr].length}</span></div>${byY[yr].map(p=>`<div class="pub-item ${p.type}"><div class="pub-title">${p.title}</div><div class="pub-authors">${p.authors}</div><div class="pub-meta"><span class="pub-journal">${p.journal}</span><span class="badge ${p.type}">${TL[p.type]||p.type}</span>${p.doi?`<a class="pub-doi" href="${p.doi}" target="_blank" rel="noopener">DOI ↗</a>`:''}</div></div>`).join('')}</div>`).join('');
+  el.innerHTML=Object.keys(byY).sort((a,b)=>b-a).map(yr=>`<div class="pub-year-group"><div class="pub-year-label">${yr} <span class="pub-count-badge">${byY[yr].length}</span></div>${byY[yr].map(p=>`<div class="pub-item ${p.type}"><div class="pub-title">${p.title}</div><div class="pub-authors">${p.authors}</div><div class="pub-meta"><span class="pub-journal">${p.journal}</span><span class="badge ${p.type}">${TL[p.type]||p.type}</span>$${(p.doi || p.link) ? `
+<a class="pub-doi" href="${p.doi || p.link}" target="_blank" rel="noopener">
+${
+  p.type === 'journal' ? 'DOI ↗' :
+  p.type === 'conference' ? '🔗' :
+  '🔗'
+}
+</a>` : ''}</div></div>`).join('')}</div>`).join('');
 }
 function summary(){
   const t=PUBLICATIONS.length,j=PUBLICATIONS.filter(p=>p.type==='journal').length,c=PUBLICATIONS.filter(p=>p.type==='conference').length,b=PUBLICATIONS.filter(p=>p.type==='book').length;
