@@ -1,4 +1,3 @@
-
 :root{--blue:#1f73d2;--cyan:#20b2c6;--green:#34c63b;--deep:#1f4b82;--muted:#617892;}
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
@@ -114,7 +113,7 @@ a{text-decoration:none;color:inherit}
 .group-section:first-of-type{margin-top:2px;border-top:none;padding-top:0;}
 .group-count{font-size:0.70rem;font-weight:700;background:#eef3fa;color:var(--muted);border-radius:999px;padding:2px 8px;border:1px solid #dce6ef;text-transform:none;letter-spacing:0;}
 .people-grid{display:flex;flex-wrap:wrap;gap:14px;}
-.person-card{width:185px;background:#fafcff;border:1px solid #e4edf5;border-radius:14px;padding:18px 13px 14px;display:flex;flex-direction:column;align-items:center;text-align:center;transition:box-shadow .2s,transform .2s;}
+.person-card{width:220px;background:#fafcff;border:1px solid #e4edf5;border-radius:14px;padding:18px 13px 14px;display:flex;flex-direction:column;align-items:center;text-align:center;transition:box-shadow .2s,transform .2s;}
 .person-card:hover{box-shadow:0 8px 28px rgba(32,57,86,0.10);transform:translateY(-2px);}
 .person-photo{width:90px;height:90px;border-radius:50%;object-fit:cover;border:3px solid #ddeaf8;margin-bottom:11px;background:#eef3f8;display:block;}
 .photo-fallback{width:90px;height:90px;border-radius:50%;background:linear-gradient(135deg,#e8f0fb,#ddeef8);border:3px solid #c8dcf0;display:flex;align-items:center;justify-content:center;margin-bottom:11px;flex-shrink:0;}
@@ -128,7 +127,7 @@ a{text-decoration:none;color:inherit}
 .scholar-btn{display:inline-flex;align-items:center;gap:5px;padding:4px 11px;border-radius:999px;border:1.5px solid #dce6ef;font-size:0.69rem;font-weight:700;color:var(--blue);background:#f0f6ff;transition:.2s;margin-top:auto;cursor:pointer;text-decoration:none;}
 .scholar-btn:hover{background:var(--blue);color:#fff;border-color:var(--blue);}
 .scholar-btn svg{width:12px;height:12px;flex-shrink:0;}
-.person-card.pi{width:210px;}
+.person-card.pi{width:245px;}
 .person-card.pi .person-photo,.person-card.pi .photo-fallback{width:114px;height:114px;}
 .person-card.pi .photo-fallback svg{width:56px;height:56px;}
 .person-card.pi .person-name{font-size:0.92rem;}
@@ -593,10 +592,10 @@ footer{flex-shrink:0;background:#fff;border-top:1px solid #e3eaf1;padding:11px 4
 }
 
 /* Dinamik font */
-.name-lg { font-size: 0.84rem; }
-.name-md { font-size: 0.78rem; }
-.name-sm { font-size: 0.72rem; }
-.name-xs { font-size: 0.66rem; }
+.name-lg { font-size: 0.90rem; }
+.name-md { font-size: 0.82rem; }
+.name-sm { font-size: 0.74rem; }
+.name-xs { font-size: 0.67rem; }
 
 /* Link taşmasını da kontrol et */
 .person-name a{
