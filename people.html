@@ -72,12 +72,31 @@ const PEOPLE={
 const CAP=`<svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg"><polygon points="32,10 62,26 32,42 2,26" fill="#1f73d2" opacity="0.9"/><polygon points="32,10 62,26 32,34 2,26" fill="#20b2c6" opacity="0.85"/><path d="M14 30 L14 46 Q32 52 32 52 L32 36 Q20 33 14 30Z" fill="#1ea35a" opacity="0.9"/><path d="M50 30 L50 46 Q32 52 32 52 L32 36 Q44 33 50 30Z" fill="#34c63b" opacity="0.85"/><line x1="62" y1="26" x2="62" y2="42" stroke="#1f73d2" stroke-width="3" stroke-linecap="round"/><circle cx="62" cy="44" r="3" fill="#20b2c6"/></svg>`;
 const BCAP=`<svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg"><polygon points="32,10 62,26 32,42 2,26" fill="currentColor" opacity="0.9"/><path d="M14 30 L14 46 Q32 52 32 52 L32 36 Q20 33 14 30Z" fill="currentColor" opacity="0.75"/><path d="M50 30 L50 46 Q32 52 32 52 L32 36 Q44 33 50 30Z" fill="currentColor" opacity="0.65"/><line x1="62" y1="26" x2="62" y2="42" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><circle cx="62" cy="44" r="3" fill="currentColor"/></svg>`;
 
-function getNameClass(name){
+/* Unvanı isimden ayır */
+const TITLES = ['Prof.Dr.', 'Assoc.Prof.Dr.', 'Assist.Prof.Dr.', 'Dr.', 'Prof.'];
+function extractTitle(name) {
+  for (const t of TITLES) {
+    if (name.startsWith(t + ' ')) {
+      return { title: t, rest: name.slice(t.length + 1) };
+    }
+  }
+  return { title: '', rest: name };
+}
+
+/* Departmanı "Department of" + geri kalan olarak ayır */
+function splitDept(dept) {
+  if (dept.startsWith('Department of ')) {
+    return { prefix: 'Department of', rest: dept.slice('Department of '.length) };
+  }
+  return { prefix: '', rest: dept };
+}
+
+function getNameClass(name) {
   const len = name.length;
-  if(len < 22) return "name-lg";
-  if(len < 30) return "name-md";
-  if(len < 38) return "name-sm";
-  return "name-xs";
+  if (len < 18) return 'name-lg';
+  if (len < 24) return 'name-md';
+  if (len < 30) return 'name-sm';
+  return 'name-xs';
 }
 
 function card(p, cls=''){
@@ -87,11 +106,23 @@ function card(p, cls=''){
        <div class="photo-fallback" style="display:none">${CAP}</div>`
     : `<div class="photo-fallback">${CAP}</div>`;
 
+  const { title, rest } = extractTitle(p.name);
+  const nameClass = getNameClass(rest);
+
+  const titleLine = title
+    ? `<div class="person-title">${title}</div>`
+    : '';
+
   const nm = p.scholar
-    ? `<div class="person-name ${getNameClass(p.name)}" title="${p.name}">
-         <a href="${p.scholar}" target="_blank" rel="noopener">${p.name}</a>
+    ? `${titleLine}<div class="person-name ${nameClass}" title="${rest}">
+         <a href="${p.scholar}" target="_blank" rel="noopener">${rest}</a>
        </div>`
-    : `<div class="person-name ${getNameClass(p.name)}" title="${p.name}">${p.name}</div>`;
+    : `${titleLine}<div class="person-name ${nameClass}" title="${rest}">${rest}</div>`;
+
+  const { prefix, rest: deptRest } = splitDept(p.dept);
+  const deptHtml = prefix
+    ? `<div class="person-dept-prefix">${prefix}</div><div class="person-dept" title="${deptRest}">${deptRest}</div>`
+    : `<div class="person-dept" title="${p.dept}">${p.dept}</div>`;
 
   const em = p.email
     ? `<div class="person-email">${p.email}</div>`
@@ -108,7 +139,7 @@ function card(p, cls=''){
       ${ph}
       ${nm}
       <div class="person-role">${p.role}</div>
-      <div class="person-dept" title="${p.dept}">${p.dept}</div>
+      ${deptHtml}
       ${em}
       ${sc}
     </div>
