@@ -246,7 +246,7 @@ a{text-decoration:none;color:inherit}
 .cinfo-value{font-size:0.87rem;color:var(--deep);font-weight:600;line-height:1.45;}
 .cinfo-value a{color:var(--blue);border-bottom:1px solid #c0d8ef;}
 .cinfo-value a:hover{color:var(--cyan);}
-.map-box{height:170px;background:linear-gradient(135deg,#e8f4fb,#edf8f0);border-radius:11px;display:flex;flex-direction:column;align-items:center;justify-content:center;border:1px solid #d4e8f5;margin-top:14px;gap:7px;}
+.map-box{height:170px;border-radius:11px;border:1px solid #d4e8f5;margin-top:14px;overflow:hidden;padding:0;}
 .map-box svg{width:28px;height:28px;color:var(--blue);opacity:.45;}
 .map-box p{font-size:0.78rem;color:var(--muted);}
 .map-box a{font-size:0.76rem;font-weight:700;color:var(--blue);}
